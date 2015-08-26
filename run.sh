@@ -42,7 +42,7 @@ done
 printenv | sort > "${ENV_FILE}"
 
 # Update MySQL
-MYSQL="mysql --host=${DB_HOST}--user=root --password=$MYSQL_ENV_MYSQL_ROOT_PASSWORD"
+MYSQL="mysql --host=${DB_HOST} --user=root --password=$MYSQL_ENV_MYSQL_ROOT_PASSWORD"
 echo "CREATE DATABASE IF NOT EXISTS ${DB_NAME};" | $MYSQL
 echo "GRANT ALL ON ${DB_NAME}.* to ${DB_USER}@'%' IDENTIFIED BY '$DB_PASS';" | $MYSQL
 echo "FLUSH PRIVILEGES;" | $MYSQL
