@@ -21,10 +21,10 @@ if [ -z "$APP_CODE" ]; then
 fi
 
 # Database Variables
-export DB_NAME=${DB_NAME-$APP_CODE}
-export DB_USER=${DB_USER-$APP_CODE}
-export DB_PASS=${DB_PASS-$(genpasswd 12)}
-export DB_HOST=${DB_HOST-$MYSQL_PORT_3306_TCP_ADDR}
+export DB_NAME=${DB_NAME:-$APP_CODE}
+export DB_USER=${DB_USER:-$APP_CODE}
+export DB_PASS=${DB_PASS:-$(genpasswd 12)}
+export DB_HOST=${DB_HOST:-$MYSQL_PORT_3306_TCP_ADDR}
 
 # TODO
 #DEBUG= Staging / Development
