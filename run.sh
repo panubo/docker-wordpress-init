@@ -39,10 +39,7 @@ writeenv DEBUG "${DEBUG:-false}"
 HASHS='AUTH_KEY SECURE_AUTH_KEY LOGGED_IN_KEY NONCE_KEY AUTH_SALT SECURE_AUTH_SALT LOGGED_IN_SALT NONCE_SALT'
 for KEY in $HASHS; do
     VAL=$(eval echo \$$KEY)
-    if [ -z "$VAL" ]; then
-        # write to env file
-        writeenv "$KEY" "$(genpasswd 64)"
-    fi
+    writeenv "$KEY" "${VAL:-$(genpasswd 64)}"
 done
 
 # Update MySQL
