@@ -1,6 +1,7 @@
 # Wordpress Init for Docker
 
-This sets up the required environment variables to bootstrap a new Wordpress install.
+This generates the required _static_ environment variables to bootstrap a new Wordpress install
+and creates a corresponding MySQL user and database.
 
 ## Status
 
