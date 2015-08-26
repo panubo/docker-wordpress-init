@@ -24,7 +24,7 @@ fi
 export DB_NAME=${DB_NAME-$APP_CODE}
 export DB_USER=${DB_USER-$APP_CODE}
 export DB_PASS=${DB_PASS-$(genpasswd 12)}
-export DB_HOST=${DB_HOST-$MARIADB_PORT_3306_TCP_ADDR}
+export DB_HOST=${DB_HOST-$MYSQL_PORT_3306_TCP_ADDR}
 
 # TODO
 #DEBUG= Staging / Development
@@ -42,7 +42,7 @@ done
 printenv | sort > "${ENV_FILE}"
 
 # Update MySQL
-MYSQL="mysql --host=${DB_HOST}--user=root --password=$MARIADB_ENV_MYSQL_ROOT_PASSWORD"
+MYSQL="mysql --host=${DB_HOST}--user=root --password=$MYSQL_ENV_MYSQL_ROOT_PASSWORD"
 echo "CREATE DATABASE IF NOT EXISTS ${DB_NAME};" | $MYSQL
 echo "GRANT ALL ON ${DB_NAME}.* to ${DB_USER}@'%' IDENTIFIED BY '$DB_PASS';" | $MYSQL
 echo "FLUSH PRIVILEGES;" | $MYSQL
