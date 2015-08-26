@@ -32,9 +32,6 @@ writeenv DB_USER "${DB_USER:-$APP_CODE}"
 writeenv DB_PASS "${DB_PASS:-$(genpasswd 12)}"
 writeenv DB_HOST "${DB_HOST:-$MYSQL_PORT_3306_TCP_ADDR}"
 
-# Debug Setting
-writeenv DEBUG "${DEBUG:-false}"
-
 # Wordpress Secure Salts
 HASHS='AUTH_KEY SECURE_AUTH_KEY LOGGED_IN_KEY NONCE_KEY AUTH_SALT SECURE_AUTH_SALT LOGGED_IN_SALT NONCE_SALT'
 for KEY in $HASHS; do
