@@ -9,10 +9,16 @@ genpasswd() {
     cat /dev/urandom | tr -dc A-Za-z0-9_ | head -c ${l}
 }
 
+writeenv() {
+    # write to env file
+    echo "$1='$2'" >> "${ENV_FILE}"
+}
+
 # Load environment file
 ENV_FILE=${1-/tmp/env}
-touch "${ENV_FILE}"
+touch "${ENV_FILE}"  # Create if not exist
 source "${ENV_FILE}"
+> "${ENV_FILE}"  # Zero it
 
 # Sanity check
 if [ -z "$APP_CODE" ]; then
@@ -21,10 +27,10 @@ if [ -z "$APP_CODE" ]; then
 fi
 
 # Database Variables
-export DB_NAME=${DB_NAME:-$APP_CODE}
-export DB_USER=${DB_USER:-$APP_CODE}
-export DB_PASS=${DB_PASS:-$(genpasswd 12)}
-export DB_HOST=${DB_HOST:-$MYSQL_PORT_3306_TCP_ADDR}
+writeenv DB_NAME "${DB_NAME:-$APP_CODE}"
+writeenv DB_USER "${DB_USER:-$APP_CODE}"
+writeenv DB_PASS "${DB_PASS:-$(genpasswd 12)}"
+writeenv DB_HOST "${DB_HOST:-$MYSQL_PORT_3306_TCP_ADDR}"
 
 # TODO
 #DEBUG= Staging / Development
@@ -34,12 +40,10 @@ HASHS='AUTH_KEY SECURE_AUTH_KEY LOGGED_IN_KEY NONCE_KEY AUTH_SALT SECURE_AUTH_SA
 for KEY in $HASHS; do
     VAL=$(eval echo \$$KEY)
     if [ -z "$VAL" ]; then
-        export $KEY=$(genpasswd 64)
+        # write to env file
+        writeenv "$KEY" "$(genpasswd 64)"
     fi
 done
-
-# Write out env file
-printenv | sort > "${ENV_FILE}"
 
 # Update MySQL
 MYSQL="mysql --host=${DB_HOST} --user=root --password=$MYSQL_ENV_MYSQL_ROOT_PASSWORD"
