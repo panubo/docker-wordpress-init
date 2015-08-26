@@ -7,4 +7,4 @@ RUN apk add --update bash findutils gzip mariadb-client && \
 
 COPY run.sh /
 
-CMD ["run.sh"]
+CMD ["/run.sh"]
