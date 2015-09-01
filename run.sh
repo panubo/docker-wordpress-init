@@ -6,7 +6,7 @@ genpasswd() {
     export LC_CTYPE=C  # Quiet tr warnings
     local l=$1
     [ "$l" == "" ] && l=16
-    cat /dev/urandom | tr -dc A-Za-z0-9_ | head -c ${l}
+    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l}
 }
 
 writeenv() {
