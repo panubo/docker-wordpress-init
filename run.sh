@@ -30,8 +30,8 @@ if [ -z "$APP_CODE" ]; then
 fi
 
 # Database Variables
-writeenv DB_NAME "${DB_NAME:-$APP_CODE}"
-writeenv DB_USER "${DB_USER:-$APP_CODE}"
+writeenv DB_NAME "$(echo ${DB_NAME:-$APP_CODE} | tr '-' '_' )"
+writeenv DB_USER "$(echo ${DB_USER:-$APP_CODE} | tr '-' '_' )"
 writeenv DB_PASS "${DB_PASS:-$(genpasswd 12)}"
 writeenv DB_HOST "${DB_HOST:-$MYSQL_PORT_3306_TCP_ADDR}"
 
