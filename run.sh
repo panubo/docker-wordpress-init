@@ -12,7 +12,7 @@ genpasswd() {
 writeenv() {
     # write to env file
     echo "$1='$2'" >> "${ENV_FILE}"
-    $1=$2
+    set $1=$2
 }
 
 # Load environment file
