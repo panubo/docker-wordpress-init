@@ -43,6 +43,12 @@ for KEY in $HASHS; do
 done
 
 # Update MySQL
+
+while ! exec 6<>/dev/tcp/${DB_HOST}/3306; do
+    echo "$(date) - waiting to connect to mysql at ${DB_HOST}:3306"
+    sleep 1
+done
+
 MYSQL="mysql --host=${DB_HOST} --user=root --password=${MYSQL_ENV_MYSQL_ROOT_PASSWORD}"
 echo "CREATE DATABASE IF NOT EXISTS ${DB_NAME};" | $MYSQL
 echo "GRANT ALL ON ${DB_NAME}.* to ${DB_USER}@'%' IDENTIFIED BY '$DB_PASS';" | $MYSQL
