@@ -50,7 +50,7 @@ echo "FLUSH PRIVILEGES;" | $MYSQL
 
 echo ">> Wordpress Init Done."
 
-if [ -z "$2" ] && [ "$2" == "--sleep" ]; then
+if [ -n "$2" ] && [ "$2" == "--sleep" ]; then
     echo ">> sleeping"
     sleep infinity
 fi
