@@ -18,7 +18,7 @@ writeenv() {
 }
 
 # Load environment file
-ENV_FILE=${1-/tmp/env}
+ENV_FILE=${1-/output/environment}
 touch "${ENV_FILE}"  # Create if not exist
 source "${ENV_FILE}"
 > "${ENV_FILE}"  # Zero it

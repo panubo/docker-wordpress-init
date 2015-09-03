@@ -9,7 +9,8 @@ MAINTAINER Andrew Cutler <andrew@panubo.com>
 
 RUN apt-get update && \
     apt-get -y install bash findutils gzip mariadb-client && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir -p /output
 
 COPY run.sh /
 
