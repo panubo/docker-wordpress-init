@@ -8,7 +8,7 @@ See [Wordpress Example](https://github.com/voltgrid/voltgrid-wordpress-example).
 ## Usage
 
 ```
-docker run quay.io/panubo/wordpress-init <output> --sleep
+docker run -e APP_CODE=<code> quay.io/panubo/wordpress-init <output> --sleep
 ```
 
 ## Status
