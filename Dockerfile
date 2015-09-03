@@ -12,6 +12,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /output
 
-COPY run.sh /
+COPY entry.sh /
 
-CMD ["/run.sh"]
+ENTRYPOINT ["/entry.sh"]
