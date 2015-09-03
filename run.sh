@@ -33,7 +33,7 @@ fi
 writeenv DB_NAME "$(echo ${DB_NAME:-$APP_CODE} | tr '-' '_' )"
 writeenv DB_USER "$(echo ${DB_USER:-$APP_CODE} | tr '-' '_' )"
 writeenv DB_PASS "${DB_PASS:-$(genpasswd 12)}"
-writeenv DB_HOST "${DB_HOST:-$MYSQL_PORT_3306_TCP_ADDR}"
+writeenv DB_HOST "${MYSQL_PORT_3306_TCP_ADDR:-$DB_HOST}"
 
 # Wordpress Secure Salts
 HASHS='AUTH_KEY SECURE_AUTH_KEY LOGGED_IN_KEY NONCE_KEY AUTH_SALT SECURE_AUTH_SALT LOGGED_IN_SALT NONCE_SALT'
