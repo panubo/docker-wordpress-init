@@ -1,5 +1,7 @@
 # Wordpress Init for Docker
 
+[![Docker Repository on Quay](https://quay.io/repository/panubo/wordpress-init/status "Docker Repository on Quay")](https://quay.io/repository/panubo/wordpress-init)
+
 This generates the required _static_ environment variables to bootstrap a new Wordpress install
 and creates a corresponding MySQL user and database.
 
