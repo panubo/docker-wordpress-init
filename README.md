@@ -3,7 +3,10 @@
 This generates the required _static_ environment variables to bootstrap a new Wordpress install
 and creates a corresponding MySQL user and database.
 
-See [Wordpress Example](https://github.com/voltgrid/voltgrid-wordpress-example).
+The variables this generates and accepts are as defined in the
+[Wordpress Example](https://github.com/voltgrid/voltgrid-wordpress-example) project.
+
+Any unrecognised variables will be discarded.
 
 ## Usage
 

@@ -13,8 +13,11 @@ genpasswd() {
 
 writeenv() {
     # write to env file
-    echo "$1=$2" >> "${ENV_FILE}"
-    export $1=$2
+    # leave empty values unset
+    if [ "$2" != "" ]; then
+        echo "$1=$2" >> "${ENV_FILE}"
+        export $1=$2
+    fi
 }
 
 # Load environment file
@@ -42,8 +45,14 @@ for KEY in $HASHS; do
     writeenv "$KEY" "${VAL:-$(genpasswd 64)}"
 done
 
-# Update MySQL
+# Miscellaneous variables, default to ''
+MISC='DEBUG WP_SITEURL WP_HOME'
+for KEY in $MISC; do
+    VAL=$(eval echo \$$KEY)
+    writeenv "$KEY" "${VAL}"
+done
 
+# Update MySQL
 while ! exec 6<>/dev/tcp/${DB_HOST}/3306; do
     echo "$(date) - waiting to connect to mysql at ${DB_HOST}:3306"
     sleep 1
